@@ -1,0 +1,15 @@
+J:\mycode\Task-Progress-Bar\Task-Progress-Bar\bin\Debug\Task-Progress-Bar.exe.config
+J:\mycode\Task-Progress-Bar\Task-Progress-Bar\bin\Debug\Task-Progress-Bar.exe
+J:\mycode\Task-Progress-Bar\Task-Progress-Bar\bin\Debug\Task-Progress-Bar.pdb
+J:\mycode\Task-Progress-Bar\Task-Progress-Bar\obj\Debug\Task-Progress-Bar.csprojAssemblyReference.cache
+J:\mycode\Task-Progress-Bar\Task-Progress-Bar\obj\Debug\MainWindow.g.cs
+J:\mycode\Task-Progress-Bar\Task-Progress-Bar\obj\Debug\App.g.cs
+J:\mycode\Task-Progress-Bar\Task-Progress-Bar\obj\Debug\Task-Progress-Bar_MarkupCompile.cache
+J:\mycode\Task-Progress-Bar\Task-Progress-Bar\obj\Debug\Task-Progress-Bar_MarkupCompile.lref
+J:\mycode\Task-Progress-Bar\Task-Progress-Bar\obj\Debug\MainWindow.baml
+J:\mycode\Task-Progress-Bar\Task-Progress-Bar\obj\Debug\Task-Progress-Bar.g.resources
+J:\mycode\Task-Progress-Bar\Task-Progress-Bar\obj\Debug\Task_Progress_Bar.Properties.Resources.resources
+J:\mycode\Task-Progress-Bar\Task-Progress-Bar\obj\Debug\Task-Progress-Bar.csproj.GenerateResource.cache
+J:\mycode\Task-Progress-Bar\Task-Progress-Bar\obj\Debug\Task-Progress-Bar.csproj.CoreCompileInputs.cache
+J:\mycode\Task-Progress-Bar\Task-Progress-Bar\obj\Debug\Task-Progress-Bar.exe
+J:\mycode\Task-Progress-Bar\Task-Progress-Bar\obj\Debug\Task-Progress-Bar.pdb
