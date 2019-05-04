@@ -24,11 +24,12 @@ namespace Task_Progress_Bar
     {
         private System.Windows.Forms.NotifyIcon notifyIcon;
         private System.Timers.Timer timer;
+        public int DStime { get; set; }//定义一个可读可写的公用的倒数秒数
         public MainWindow()
         {
             InitializeComponent();
 
-            timer = new System.Timers.Timer(1000);
+            timer = new System.Timers.Timer(50);
             timer.Elapsed += new ElapsedEventHandler(Timer_Elapsed);
             timer.Start();
         }
@@ -37,7 +38,7 @@ namespace Task_Progress_Bar
         {
             this.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)(() =>
             {
-                if (myProBar.Value < 100)
+                if (myProBar.Value < myProBar.Maximum)
                 {
                     myProBar.Value += 1;
                 }
@@ -95,6 +96,18 @@ namespace Task_Progress_Bar
         {
             this.ShowInTaskbar = false;
             System.Windows.Application.Current.Shutdown();
+        }
+        public void ResSetProBar()
+        {
+            //timer.Stop();
+            System.Windows.MessageBox.Show(DStime.ToString());
+            myProBar.Maximum = DStime;
+            //System.Windows.MessageBox.Show("5555");
+        }
+
+        private void TMwindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            this.notifyIcon.Visible = false;
         }
     }
 }

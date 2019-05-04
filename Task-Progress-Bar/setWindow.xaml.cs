@@ -26,16 +26,7 @@ namespace Task_Progress_Bar
 
         private void SetWinLoaded(object sender, RoutedEventArgs e)
         {
-            if (radioButton1.IsChecked == true)
-            {
-                radioButton1.IsChecked = true;
-                textBox_ho1.IsEnabled = true;
-                textBox_mi1.IsEnabled = true;
-                textBox_se1.IsEnabled = true;
-                textBox_ho2.IsEnabled = false;
-                textBox_mi2.IsEnabled = false;
-                textBox_se2.IsEnabled = false;
-            }
+
         }
 
         private void TextBox_se1_KeyDown(object sender, KeyEventArgs e)
@@ -45,7 +36,7 @@ namespace Task_Progress_Bar
         
         private void TextBox_se1_TextChanged(object sender, TextChangedEventArgs e)
         {
-            Xianzhi(textBox_se1);
+            Xianzhi9999(textBox_se1);
         }
         private void TextBox_se2_KeyDown(object sender, KeyEventArgs e)
         {
@@ -53,7 +44,7 @@ namespace Task_Progress_Bar
         }
         private void TextBox_se2_TextChanged(object sender, TextChangedEventArgs e)
         {
-            Xianzhi(textBox_se2);
+            Xianzhi59(textBox_se2);
         }
         private void TextBox_mi1_KeyDown(object sender, KeyEventArgs e)
         {
@@ -61,7 +52,7 @@ namespace Task_Progress_Bar
         }
         private void TextBox_mi1_TextChanged(object sender, TextChangedEventArgs e)
         {
-            Xianzhi(textBox_mi1);
+            Xianzhi9999(textBox_mi1);
         }
         private void TextBox_mi2_KeyDown(object sender, KeyEventArgs e)
         {
@@ -69,7 +60,7 @@ namespace Task_Progress_Bar
         }
         private void TextBox_mi2_TextChanged(object sender, TextChangedEventArgs e)
         {
-            Xianzhi(textBox_mi2);
+            Xianzhi59(textBox_mi2);
         }
         private void TextBox_ho1_KeyDown(object sender, KeyEventArgs e)
         {
@@ -77,7 +68,7 @@ namespace Task_Progress_Bar
         }
         private void TextBox_ho1_TextChanged(object sender, TextChangedEventArgs e)
         {
-            Xianzhi(textBox_ho1);
+            Xianzhi9999(textBox_ho1);
         }
         private void TextBox_ho2_KeyDown(object sender, KeyEventArgs e)
         {
@@ -85,10 +76,10 @@ namespace Task_Progress_Bar
         }
         private void TextBox_ho2_TextChanged(object sender, TextChangedEventArgs e)
         {
-            Xianzhi(textBox_ho2);
+            Xianzhi23(textBox_ho2);
         }
         //限制最大数值
-        private void Xianzhi(TextBox sender) {
+        private void Xianzhi9999(TextBox sender) {
             try
             {
                 string strNum = sender.Text;
@@ -114,6 +105,60 @@ namespace Task_Progress_Bar
                 sender.Text = "";
             }
         }
+        private void Xianzhi59(TextBox sender)
+        {
+            try
+            {
+                string strNum = sender.Text;
+                if ("" == strNum || null == strNum)
+                {
+                    return;
+                }
+                int num = int.Parse(sender.Text);
+                sender.Text = num.ToString();
+                if (num <= 59)
+                {
+                    return;
+                }
+                else
+                {
+                    //sender.Text = "";
+                    sender.Text = sender.Text.Remove(2);
+                    sender.SelectionStart = sender.Text.Length;
+                }
+            }
+            catch
+            {
+                sender.Text = "59";
+            }
+        }
+        private void Xianzhi23(TextBox sender)
+        {
+            try
+            {
+                string strNum = sender.Text;
+                if ("" == strNum || null == strNum)
+                {
+                    return;
+                }
+                int num = int.Parse(sender.Text);
+                sender.Text = num.ToString();
+                if (num <= 23)
+                {
+                    return;
+                }
+                else
+                {
+                    //sender.Text = "";
+                    sender.Text = sender.Text.Remove(2);
+                    sender.SelectionStart = sender.Text.Length;
+                }
+            }
+            catch
+            {
+                sender.Text = "23";
+            }
+        }
         private void MyKeyDown(TextBox sender, KeyEventArgs e)
         {
             if ((e.Key >= Key.NumPad0 && e.Key <= Key.NumPad9))
@@ -137,31 +182,49 @@ namespace Task_Progress_Bar
 
         private void RadioButton1_Checked(object sender, RoutedEventArgs e)
         {
-            if (radioButton1.IsChecked == true)
-            {
-                //radioButton1.IsChecked = true;
-                textBox_ho1.IsEnabled = true;
-                textBox_mi1.IsEnabled = true;
-                textBox_se1.IsEnabled = true;
-                textBox_ho2.IsEnabled = false;
-                textBox_mi2.IsEnabled = false;
-                textBox_se2.IsEnabled = false;
-            }
+
         }
 
         private void RadioButton2_Checked(object sender, RoutedEventArgs e)
         {
-            //if (radioButton2.IsChecked == true)
-            //{
-            //    //radioButton2.IsChecked = true;
-            //    textBox_ho2.IsEnabled = true;
-            //    textBox_mi2.IsEnabled = true;
-            //    textBox_se2.IsEnabled = true;
-            //    textBox_ho1.IsEnabled = false;
-            //    textBox_mi1.IsEnabled = false;
-            //    textBox_se1.IsEnabled = false;
-            //}
+
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            int ho, mi, se;
+            MainWindow cuandi = new MainWindow();
+            if (radioButton1.IsChecked == true)
+            {
+                if (textBox_ho1.Text == "")
+                {
+                    ho = 0;
+                }
+                else
+                {
+                    ho = int.Parse(textBox_ho1.Text);
+                }
+                if (textBox_mi1.Text == "")
+                {
+                    mi = 0;
+                }
+                else
+                {
+                    mi = int.Parse(textBox_mi1.Text);
+                }
+                if (textBox_se1.Text == "")
+                {
+                    se = 0;
+                }
+                else
+                {
+                    se = int.Parse(textBox_se1.Text);
+                }
+                cuandi.DStime = ho * 3600 + mi * 60 + se;
+                MessageBox.Show(cuandi.DStime.ToString());
+            }
+            cuandi.ResSetProBar();
+            setWin.Close();
+        }
     }
 }
