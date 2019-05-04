@@ -10,6 +10,6 @@
         Height="10" Width="800" Left="0" ResizeMode="NoResize"
         AllowsTransparency="True" Background="#00000000">
     <Grid x:Name="myGrid" HorizontalAlignment="Left" Height="10" Margin="0,0,0,0" VerticalAlignment="Top" Width="800">
-        <ProgressBar x:Name="myProBar" HorizontalAlignment="Left" Height="2" Margin="0,8,0,0" VerticalAlignment="Top" Width="800" Grid.ColumnSpan="2" BorderBrush="#00BCBCBC" Background="#CC000000" Value="40"/>
+        <ProgressBar x:Name="myProBar" HorizontalAlignment="Left" Height="2" Margin="0,8,0,0" VerticalAlignment="Top" Width="800" Grid.ColumnSpan="2" BorderBrush="#00BCBCBC" Background="#CC000000" Foreground="#FF06B025"/>
     </Grid>
 </Window>
