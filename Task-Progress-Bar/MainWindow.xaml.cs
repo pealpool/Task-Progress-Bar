@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Forms;
+using System.Timers;
 
 namespace Task_Progress_Bar
 {
@@ -22,9 +23,29 @@ namespace Task_Progress_Bar
     public partial class MainWindow : Window
     {
         private System.Windows.Forms.NotifyIcon notifyIcon;
+        private System.Timers.Timer timer;
         public MainWindow()
         {
             InitializeComponent();
+
+            timer = new System.Timers.Timer(1000);
+            timer.Elapsed += new ElapsedEventHandler(Timer_Elapsed);
+            timer.Start();
+        }
+
+        void Timer_Elapsed(object sender, ElapsedEventArgs e)
+        {
+            this.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)(() =>
+            {
+                if (myProBar.Value < 100)
+                {
+                    myProBar.Value += 1;
+                }
+                else
+                {
+                    timer.Stop();
+                }
+            }));
         }
         private void TMwindow_OnLoaded(object sender, RoutedEventArgs e)
         {
@@ -44,10 +65,10 @@ namespace Task_Progress_Bar
             this.notifyIcon.Text = "单击设置";
             this.notifyIcon.Icon = System.Drawing.Icon.ExtractAssociatedIcon(System.Windows.Forms.Application.ExecutablePath);
             //打开菜单项
-            System.Windows.Forms.MenuItem open = new System.Windows.Forms.MenuItem("Open");
+            System.Windows.Forms.MenuItem open = new System.Windows.Forms.MenuItem("设置");
             open.Click += new EventHandler(Show);
             //退出菜单项
-            System.Windows.Forms.MenuItem exit = new System.Windows.Forms.MenuItem("Exit");
+            System.Windows.Forms.MenuItem exit = new System.Windows.Forms.MenuItem("退出");
             exit.Click += new EventHandler(Close);
             //关联托盘控件
             System.Windows.Forms.MenuItem[] childen = new System.Windows.Forms.MenuItem[] { open, exit };
@@ -59,15 +80,17 @@ namespace Task_Progress_Bar
         }
         private void Show(object sender, EventArgs e)
         {
-            this.Visibility = System.Windows.Visibility.Visible;
-            this.ShowInTaskbar = true;
-            this.Activate();
+            //this.Visibility = System.Windows.Visibility.Visible;
+            //this.ShowInTaskbar = true;
+            //this.Activate();
+            setWindow win = new setWindow();
+            win.Show();
         }
-        private void Hide(object sender, EventArgs e)
-        {
-            this.ShowInTaskbar = false;
-            this.Visibility = System.Windows.Visibility.Hidden;
-        }
+        //private void Hide(object sender, EventArgs e)
+        //{
+        //    this.ShowInTaskbar = false;
+        //    this.Visibility = System.Windows.Visibility.Hidden;
+        //}
         private void Close(object sender, EventArgs e)
         {
             this.ShowInTaskbar = false;
