@@ -30,3 +30,5 @@ D:\githubClone\Task-Progress-Bar\Task-Progress-Bar\obj\Debug\Task-Progress-Bar.e
 D:\githubClone\Task-Progress-Bar\Task-Progress-Bar\obj\Debug\Task-Progress-Bar.pdb
 D:\githubClone\Task-Progress-Bar\Task-Progress-Bar\obj\Debug\setWindow.g.cs
 D:\githubClone\Task-Progress-Bar\Task-Progress-Bar\obj\Debug\setWindow.baml
+J:\mycode\Task-Progress-Bar\Task-Progress-Bar\obj\Debug\setWindow.g.cs
+J:\mycode\Task-Progress-Bar\Task-Progress-Bar\obj\Debug\setWindow.baml
