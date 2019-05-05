@@ -24,14 +24,9 @@ namespace Task_Progress_Bar
     {
         private System.Windows.Forms.NotifyIcon notifyIcon;
         private System.Timers.Timer timer;
-        public int DStime { get; set; }//定义一个可读可写的公用的倒数秒数
         public MainWindow()
         {
             InitializeComponent();
-
-            timer = new System.Timers.Timer(50);
-            timer.Elapsed += new ElapsedEventHandler(Timer_Elapsed);
-            timer.Start();
         }
 
         void Timer_Elapsed(object sender, ElapsedEventArgs e)
@@ -57,6 +52,12 @@ namespace Task_Progress_Bar
             TMwindow.Left = 0;
             myGrid.Width = wWidth;
             myProBar.Width = wWidth;
+            //myProBar.Maximum = wWidth;
+            //double ti = 60000 / wWidth;
+            //timer = new System.Timers.Timer(ti);
+            timer = new System.Timers.Timer(250);
+            timer.Elapsed += new ElapsedEventHandler(Timer_Elapsed);
+            timer.Start();
             InitNotifyIcon();
         }
         private void InitNotifyIcon()
@@ -84,8 +85,9 @@ namespace Task_Progress_Bar
             //this.Visibility = System.Windows.Visibility.Visible;
             //this.ShowInTaskbar = true;
             //this.Activate();
-            setWindow win = new setWindow();
-            win.Show();
+            setWindow fm2 = new setWindow();
+            fm2.ProBarVal += Fm2_ProBarVal;
+            fm2.ShowDialog();
         }
         //private void Hide(object sender, EventArgs e)
         //{
@@ -97,12 +99,24 @@ namespace Task_Progress_Bar
             this.ShowInTaskbar = false;
             System.Windows.Application.Current.Shutdown();
         }
-        public void ResSetProBar()
+
+        void Fm2_ProBarVal(double a)
         {
-            //timer.Stop();
-            System.Windows.MessageBox.Show(DStime.ToString());
-            myProBar.Maximum = DStime;
-            //System.Windows.MessageBox.Show("5555");
+            timer.Stop();
+            myProBar.Value = 0;
+            double ti = a*1000 / myProBar.Width;
+            if (ti<=250)
+            {
+                ti = 250;
+                myProBar.Maximum = a*4;
+            }
+            else
+            {
+                myProBar.Maximum = myProBar.Width;
+            }
+            System.Windows.MessageBox.Show(ti.ToString());
+            timer.Interval = ti;
+            timer.Start();
         }
 
         private void TMwindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)

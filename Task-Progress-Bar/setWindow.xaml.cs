@@ -19,6 +19,8 @@ namespace Task_Progress_Bar
     /// </summary>
     public partial class setWindow : Window
     {
+        public delegate void TransfDelegate(double value);
+        public event TransfDelegate ProBarVal;
         public setWindow()
         {
             InitializeComponent();
@@ -26,7 +28,10 @@ namespace Task_Progress_Bar
 
         private void SetWinLoaded(object sender, RoutedEventArgs e)
         {
-
+            double wWidth = System.Windows.Forms.SystemInformation.WorkingArea.Width;
+            double wHeight = System.Windows.Forms.SystemInformation.WorkingArea.Height;
+            setWin.Left = wWidth / 2 - setWin.Width / 2;
+            setWin.Top = wHeight / 2 - setWin.Height / 2;
         }
 
         private void TextBox_se1_KeyDown(object sender, KeyEventArgs e)
@@ -192,8 +197,8 @@ namespace Task_Progress_Bar
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            int ho, mi, se;
-            MainWindow cuandi = new MainWindow();
+            MainWindow f1 = (MainWindow)this.Owner;
+            int ho, mi, se, sum;
             if (radioButton1.IsChecked == true)
             {
                 if (textBox_ho1.Text == "")
@@ -220,10 +225,10 @@ namespace Task_Progress_Bar
                 {
                     se = int.Parse(textBox_se1.Text);
                 }
-                cuandi.DStime = ho * 3600 + mi * 60 + se;
-                MessageBox.Show(cuandi.DStime.ToString());
+                sum = ho * 3600 + mi * 60 + se;
+                MessageBox.Show(sum.ToString());
+                ProBarVal(sum);
             }
-            cuandi.ResSetProBar();
             setWin.Close();
         }
     }
