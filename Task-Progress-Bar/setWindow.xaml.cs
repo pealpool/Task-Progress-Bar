@@ -226,7 +226,7 @@ namespace Task_Progress_Bar
                     se = int.Parse(textBox_se1.Text);
                 }
                 sum = ho * 3600 + mi * 60 + se;
-                MessageBox.Show(sum.ToString());
+                //MessageBox.Show(sum.ToString());
                 ProBarVal(sum);
             }
             setWin.Close();

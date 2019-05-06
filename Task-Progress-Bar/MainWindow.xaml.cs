@@ -114,7 +114,7 @@ namespace Task_Progress_Bar
             {
                 myProBar.Maximum = myProBar.Width;
             }
-            System.Windows.MessageBox.Show(ti.ToString());
+            //System.Windows.MessageBox.Show(ti.ToString());
             timer.Interval = ti;
             timer.Start();
         }
