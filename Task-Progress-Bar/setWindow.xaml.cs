@@ -19,7 +19,7 @@ namespace Task_Progress_Bar
     /// </summary>
     public partial class setWindow : Window
     {
-        public delegate void TransfDelegate(double value);
+        public delegate void TransfDelegate(double value,bool c);
         public event TransfDelegate ProBarVal;
         public setWindow()
         {
@@ -227,7 +227,36 @@ namespace Task_Progress_Bar
                 }
                 sum = ho * 3600 + mi * 60 + se;
                 //MessageBox.Show(sum.ToString());
-                ProBarVal(sum);
+                ProBarVal(sum,true);
+            }
+            else
+            {
+                if (textBox_ho2.Text == "")
+                {
+                    ho = 0;
+                }
+                else
+                {
+                    ho = int.Parse(textBox_ho2.Text);
+                }
+                if (textBox_mi2.Text == "")
+                {
+                    mi = 0;
+                }
+                else
+                {
+                    mi = int.Parse(textBox_mi2.Text);
+                }
+                if (textBox_se2.Text == "")
+                {
+                    se = 0;
+                }
+                else
+                {
+                    se = int.Parse(textBox_se2.Text);
+                }
+                sum = ho * 3600 + mi * 60 + se;
+                ProBarVal(sum, false);
             }
             setWin.Close();
         }

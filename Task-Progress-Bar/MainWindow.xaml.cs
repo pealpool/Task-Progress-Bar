@@ -100,22 +100,29 @@ namespace Task_Progress_Bar
             System.Windows.Application.Current.Shutdown();
         }
 
-        void Fm2_ProBarVal(double a)
+        void Fm2_ProBarVal(double a,bool c)
         {
             timer.Stop();
             myProBar.Value = 0;
-            double ti = a*1000 / myProBar.Width;
-            if (ti<=250)
+            if (c == true)
             {
-                ti = 250;
-                myProBar.Maximum = a*4;
+                double ti = a * 1000 / myProBar.Width;
+                if (ti <= 250)
+                {
+                    ti = 250;
+                    myProBar.Maximum = a * 4;
+                }
+                else
+                {
+                    myProBar.Maximum = myProBar.Width;
+                }
+                //System.Windows.MessageBox.Show(ti.ToString());
+                timer.Interval = ti;
             }
             else
             {
-                myProBar.Maximum = myProBar.Width;
+
             }
-            //System.Windows.MessageBox.Show(ti.ToString());
-            timer.Interval = ti;
             timer.Start();
         }
 
