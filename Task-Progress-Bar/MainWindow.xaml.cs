@@ -25,6 +25,7 @@ namespace Task_Progress_Bar
         private System.Windows.Forms.NotifyIcon notifyIcon;
         private System.Timers.Timer timer;
         private DateTime myTime01, myTime02;
+        private double mySec = 60;
         public MainWindow()
         {
             InitializeComponent();
@@ -36,6 +37,11 @@ namespace Task_Progress_Bar
             {
                 if (myProBar.Value < myProBar.Maximum)
                 {
+                    //时间校准计划
+                    //5min多7s，多2.33%
+                    //10min多25s,多4.167%
+                    //if (myProBar.Value == myProBar.Maximum / 2) {
+                    //}
                     myProBar.Value += 1;
                 }
                 else
@@ -62,6 +68,7 @@ namespace Task_Progress_Bar
             //timer = new System.Timers.Timer(ti);
             timer = new System.Timers.Timer(250);
             timer.Elapsed += new ElapsedEventHandler(Timer_Elapsed);
+            myTime01 = DateTime.Now;
             timer.Start();
             InitNotifyIcon();
         }
@@ -104,10 +111,11 @@ namespace Task_Progress_Bar
             this.ShowInTaskbar = false;
             System.Windows.Application.Current.Shutdown();
         }
-
+        //a单位是秒，c是判断选了用那种时间倒计时方法
         void Fm2_ProBarVal(double a,bool c)
         {
             timer.Stop();
+            mySec = a;
             myProBar.Value = 0;
             if (c == true)
             {
