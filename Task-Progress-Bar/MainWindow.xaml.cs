@@ -24,6 +24,7 @@ namespace Task_Progress_Bar
     {
         private System.Windows.Forms.NotifyIcon notifyIcon;
         private System.Timers.Timer timer;
+        private DateTime myTime01, myTime02;
         public MainWindow()
         {
             InitializeComponent();
@@ -40,6 +41,10 @@ namespace Task_Progress_Bar
                 else
                 {
                     timer.Stop();
+                    myTime02 = DateTime.Now;
+                    TimeSpan myTimeX = myTime02 - myTime01;
+                    string myTimeStr = myTimeX.Days + " 日 " + myTimeX.Hours + " 时 " + myTimeX.Minutes + " 分 " + myTimeX.Seconds + " 秒";
+                    System.Windows.Forms.MessageBox.Show(myTimeStr, "Time Up", MessageBoxButtons.OK, MessageBoxIcon.None, MessageBoxDefaultButton.Button1, System.Windows.Forms.MessageBoxOptions.ServiceNotification);
                 }
             }));
         }
@@ -124,6 +129,7 @@ namespace Task_Progress_Bar
 
             }
             timer.Start();
+            myTime01 = DateTime.Now;
         }
 
         private void TMwindow_Closing(object sender, System.ComponentModel.CancelEventArgs e)

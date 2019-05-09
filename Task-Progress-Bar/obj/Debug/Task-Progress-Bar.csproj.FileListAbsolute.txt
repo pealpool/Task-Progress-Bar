@@ -32,3 +32,6 @@ D:\githubClone\Task-Progress-Bar\Task-Progress-Bar\obj\Debug\setWindow.g.cs
 D:\githubClone\Task-Progress-Bar\Task-Progress-Bar\obj\Debug\setWindow.baml
 J:\mycode\Task-Progress-Bar\Task-Progress-Bar\obj\Debug\setWindow.g.cs
 J:\mycode\Task-Progress-Bar\Task-Progress-Bar\obj\Debug\setWindow.baml
+D:\githubClone\Task-Progress-Bar\Task-Progress-Bar\bin\Debug\Lierda.WPFHelper.dll
+D:\githubClone\Task-Progress-Bar\Task-Progress-Bar\bin\Debug\Lierda.WPFHelper.xml
+D:\githubClone\Task-Progress-Bar\Task-Progress-Bar\obj\Debug\Task-Progress-Bar.csproj.CopyComplete
