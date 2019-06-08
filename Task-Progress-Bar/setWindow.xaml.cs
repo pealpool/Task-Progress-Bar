@@ -231,6 +231,7 @@ namespace Task_Progress_Bar
             }
             else
             {
+                DateTime time = DateTime.Now;
                 if (textBox_ho2.Text == "")
                 {
                     ho = 0;
@@ -238,6 +239,14 @@ namespace Task_Progress_Bar
                 else
                 {
                     ho = int.Parse(textBox_ho2.Text);
+                    if(time.Hour > ho)
+                    {
+                        ho = 24 - time.Hour + ho;
+                    }
+                    else
+                    {
+                        ho -= time.Hour;
+                    }
                 }
                 if (textBox_mi2.Text == "")
                 {
@@ -246,6 +255,14 @@ namespace Task_Progress_Bar
                 else
                 {
                     mi = int.Parse(textBox_mi2.Text);
+                    if (time.Minute > mi)
+                    {
+                        mi = 60 - time.Minute + mi;
+                    }
+                    else
+                    {
+                        mi -= time.Minute;
+                    }
                 }
                 if (textBox_se2.Text == "")
                 {
@@ -254,7 +271,16 @@ namespace Task_Progress_Bar
                 else
                 {
                     se = int.Parse(textBox_se2.Text);
+                    if (time.Second > se)
+                    {
+                        se = 60 - time.Second + se;
+                    }
+                    else
+                    {
+                        se -= time.Second;
+                    }
                 }
+
                 sum = ho * 3600 + mi * 60 + se;
                 ProBarVal(sum, false);
             }

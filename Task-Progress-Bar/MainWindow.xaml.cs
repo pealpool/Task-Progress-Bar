@@ -117,8 +117,7 @@ namespace Task_Progress_Bar
             timer.Stop();
             mySec = a;
             myProBar.Value = 0;
-            if (c == true)
-            {
+            
                 double ti = a * 1000 / myProBar.Width;
                 if (ti <= 250)
                 {
@@ -131,11 +130,7 @@ namespace Task_Progress_Bar
                 }
                 //System.Windows.MessageBox.Show(ti.ToString());
                 timer.Interval = ti;
-            }
-            else
-            {
-
-            }
+            
             timer.Start();
             myTime01 = DateTime.Now;
         }
