@@ -20,7 +20,7 @@
         <Border BorderBrush="#FFABADB3" BorderThickness="1" HorizontalAlignment="Left" Height="27" Margin="97,49,0,0" VerticalAlignment="Top" Width="129"/>
         <TextBox x:Name="textBox_ho2" HorizontalAlignment="Left" Height="18" TextWrapping="Wrap" VerticalAlignment="Top" Width="38" Margin="99,55,0,0" Text="17" TextAlignment="Right" FontSize="13" BorderBrush="#00000000" KeyDown="TextBox_ho2_KeyDown" TextChanged="TextBox_ho2_TextChanged"/>
         <Label x:Name="label_Copy1" Content=":" HorizontalAlignment="Left" Margin="133,50,0,0" VerticalAlignment="Top" FontSize="13"/>
-        <TextBox x:Name="textBox_mi2" HorizontalAlignment="Left" Height="18" TextWrapping="Wrap" VerticalAlignment="Top" Width="38" Margin="142,55,0,0" Text="45" TextAlignment="Right" FontSize="13" BorderBrush="#00000000" TextChanged="TextBox_mi2_TextChanged" KeyDown="TextBox_mi2_KeyDown"/>
+        <TextBox x:Name="textBox_mi2" HorizontalAlignment="Left" Height="18" TextWrapping="Wrap" VerticalAlignment="Top" Width="38" Margin="142,55,0,0" Text="30" TextAlignment="Right" FontSize="13" BorderBrush="#00000000" TextChanged="TextBox_mi2_TextChanged" KeyDown="TextBox_mi2_KeyDown"/>
         <Label x:Name="label_Copy2" Content=":" HorizontalAlignment="Left" Margin="176,50,0,0" VerticalAlignment="Top" FontSize="13"/>
         <TextBox x:Name="textBox_se2" HorizontalAlignment="Left" Height="18" TextWrapping="Wrap" VerticalAlignment="Top" Width="38" Margin="185,55,0,0" TextAlignment="Right" FontSize="13" BorderBrush="#00000000" TextChanged="TextBox_se2_TextChanged" KeyDown="TextBox_se2_KeyDown"/>
     </Grid>
