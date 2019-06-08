@@ -19,7 +19,7 @@ namespace Task_Progress_Bar
     /// </summary>
     public partial class setWindow : Window
     {
-        public delegate void TransfDelegate(double value,bool c);
+        public delegate void TransfDelegate(double h, double m, double s, bool c);
         public event TransfDelegate ProBarVal;
         public setWindow()
         {
@@ -198,7 +198,7 @@ namespace Task_Progress_Bar
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             MainWindow f1 = (MainWindow)this.Owner;
-            int ho, mi, se, sum;
+            int ho, mi, se;
             if (radioButton1.IsChecked == true)
             {
                 if (textBox_ho1.Text == "")
@@ -225,9 +225,9 @@ namespace Task_Progress_Bar
                 {
                     se = int.Parse(textBox_se1.Text);
                 }
-                sum = ho * 3600 + mi * 60 + se;
+                //sum = ho * 3600 + mi * 60 + se;
                 //MessageBox.Show(sum.ToString());
-                ProBarVal(sum,true);
+                ProBarVal(ho,mi,se,true);
             }
             else
             {
@@ -255,8 +255,7 @@ namespace Task_Progress_Bar
                 {
                     se = int.Parse(textBox_se2.Text);
                 }
-                sum = ho * 3600 + mi * 60 + se;
-                ProBarVal(sum, false);
+                ProBarVal(ho,mi,se, false);
             }
             setWin.Close();
         }

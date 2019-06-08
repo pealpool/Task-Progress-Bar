@@ -26,6 +26,8 @@ namespace Task_Progress_Bar
         private System.Timers.Timer timer;
         private DateTime myTime01, myTime02;
         private double mySec = 60;
+        private bool TimeSelect = true;//默认选则第一种倒数方式
+        private double vho = 1, vmi = 1, vse = 1;
         public MainWindow()
         {
             InitializeComponent();
@@ -35,22 +37,33 @@ namespace Task_Progress_Bar
         {
             this.Dispatcher.Invoke(System.Windows.Threading.DispatcherPriority.Normal, (Action)(() =>
             {
-                if (myProBar.Value < myProBar.Maximum)
+                if(TimeSelect == true)
                 {
-                    //时间校准计划
-                    //5min多7s，多2.33%
-                    //10min多25s,多4.167%
-                    //if (myProBar.Value == myProBar.Maximum / 2) {
-                    //}
-                    myProBar.Value += 1;
+                    if (myProBar.Value < myProBar.Maximum)
+                    {
+                        //时间校准计划
+                        //5min多7s，多2.33%
+                        //10min多25s,多4.167%
+                        //if (myProBar.Value == myProBar.Maximum / 2) {
+                        //}
+                        myProBar.Value += 1;
+                    }
+                    else
+                    {
+                        timer.Stop();
+                        myTime02 = DateTime.Now;
+                        TimeSpan myTimeX = myTime02 - myTime01;
+                        string myTimeStr = myTimeX.Days + " 日 " + myTimeX.Hours + " 时 " + myTimeX.Minutes + " 分 " + myTimeX.Seconds + " 秒";
+                        System.Windows.Forms.MessageBox.Show(myTimeStr, "Time Up", MessageBoxButtons.OK, MessageBoxIcon.None, MessageBoxDefaultButton.Button1, System.Windows.Forms.MessageBoxOptions.ServiceNotification);
+                    }
                 }
                 else
                 {
-                    timer.Stop();
-                    myTime02 = DateTime.Now;
-                    TimeSpan myTimeX = myTime02 - myTime01;
-                    string myTimeStr = myTimeX.Days + " 日 " + myTimeX.Hours + " 时 " + myTimeX.Minutes + " 分 " + myTimeX.Seconds + " 秒";
-                    System.Windows.Forms.MessageBox.Show(myTimeStr, "Time Up", MessageBoxButtons.OK, MessageBoxIcon.None, MessageBoxDefaultButton.Button1, System.Windows.Forms.MessageBoxOptions.ServiceNotification);
+                    DateTime time = DateTime.Now;
+                    if (time.Hour == vho && time.Minute >= vmi && time.Second >= vse)
+                    {
+                        timer.Stop();
+                    }
                 }
             }));
         }
@@ -112,18 +125,23 @@ namespace Task_Progress_Bar
             System.Windows.Application.Current.Shutdown();
         }
         //a单位是秒，c是判断选了用那种时间倒计时方法
-        void Fm2_ProBarVal(double a,bool c)
+        void Fm2_ProBarVal(double ho,double mi,double se,bool c)
         {
+            double sum = ho * 3600 + mi * 60 + se;
+            vho = ho;
+            vmi = mi;
+            vse = se;
+            TimeSelect = c;
             timer.Stop();
-            mySec = a;
+            mySec = sum;
             myProBar.Value = 0;
             if (c == true)
             {
-                double ti = a * 1000 / myProBar.Width;
+                double ti = sum * 1000 / myProBar.Width;
                 if (ti <= 250)
                 {
                     ti = 250;
-                    myProBar.Maximum = a * 4;
+                    myProBar.Maximum = sum * 4;
                 }
                 else
                 {
@@ -134,7 +152,7 @@ namespace Task_Progress_Bar
             }
             else
             {
-
+                timer.Interval = 1000;
             }
             timer.Start();
             myTime01 = DateTime.Now;
