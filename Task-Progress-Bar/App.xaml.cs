@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
 using System.Linq;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using Lierda.WPFHelper;
@@ -14,18 +15,26 @@ namespace Task_Progress_Bar
     /// </summary>
     public partial class App : Application
     {
-        //以下是回收内存方法：
-        //打开【工具】-【NuGet包管理器】-【程序包管理器控制台】
-        //输入以下：Install-Package Lierda.WPFHelper
-        //完成，关掉。
-        //用下面这段代码，搞定
-        //---------------------------------
-        LierdaCracker cracker = new LierdaCracker();
+
+        LierdaCracker cracker = new LierdaCracker();//【回收内存】
+        public EventWaitHandle ProgramStarted { get; set; }//只允许运行一个程序
         protected override void OnStartup(StartupEventArgs e)
         {
-            cracker.Cracker();//可输入垃圾回收间隔时间，默认30s
+            cracker.Cracker();//【回收内存】可输入垃圾回收间隔时间，默认30s
+            base.OnStartup(e);//【回收内存】
+
+            //只允许运行一个程序
+            bool createNew;
+            ProgramStarted = new EventWaitHandle(false, EventResetMode.AutoReset, "MyTctiApp", out createNew);
+            if (!createNew)
+            {
+                //MessageBox.Show("already run");
+                App.Current.Shutdown();
+                Environment.Exit(0);
+            }
             base.OnStartup(e);
+            //------------------------------------
         }
-        //------------------------------------
+
     }
 }

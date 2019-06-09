@@ -32,6 +32,8 @@ namespace Task_Progress_Bar
             double wHeight = System.Windows.Forms.SystemInformation.WorkingArea.Height;
             setWin.Left = wWidth / 2 - setWin.Width / 2;
             setWin.Top = wHeight / 2 - setWin.Height / 2;
+            DateTime time = DateTime.Now;
+            textBox_ho2.Text = time.Hour.ToString() + 1;
         }
 
         private void TextBox_se1_KeyDown(object sender, KeyEventArgs e)
@@ -285,6 +287,31 @@ namespace Task_Progress_Bar
                 ProBarVal(sum, false);
             }
             setWin.Close();
+        }
+
+        private void TextBox_ho2_GotFocus(object sender, RoutedEventArgs e)
+        {
+            radioButton2.IsChecked = true;
+        }
+        private void TextBox_mi2_GotFocus(object sender, RoutedEventArgs e)
+        {
+            radioButton2.IsChecked = true;
+        }
+        private void TextBox_se2_GotFocus(object sender, RoutedEventArgs e)
+        {
+            radioButton2.IsChecked = true;
+        }
+        private void TextBox_ho1_GotFocus(object sender, RoutedEventArgs e)
+        {
+            radioButton1.IsChecked = true;
+        }
+        private void TextBox_mi1_GotFocus(object sender, RoutedEventArgs e)
+        {
+            radioButton1.IsChecked = true;
+        }
+        private void TextBox_se1_GotFocus(object sender, RoutedEventArgs e)
+        {
+            radioButton1.IsChecked = true;
         }
     }
 }

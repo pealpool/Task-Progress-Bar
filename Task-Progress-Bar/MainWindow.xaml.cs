@@ -92,20 +92,19 @@ namespace Task_Progress_Bar
                 if (e.Button == System.Windows.Forms.MouseButtons.Left) this.Show(o, e);
             });
         }
+
+        
         private void Show(object sender, EventArgs e)
         {
-            //this.Visibility = System.Windows.Visibility.Visible;
-            //this.ShowInTaskbar = true;
-            //this.Activate();
+            foreach (Window item in System.Windows.Application.Current.Windows)
+            {
+                if (item.Title == "Setting") item.Close();
+            }
             setWindow fm2 = new setWindow();
             fm2.ProBarVal += Fm2_ProBarVal;
             fm2.ShowDialog();
+
         }
-        //private void Hide(object sender, EventArgs e)
-        //{
-        //    this.ShowInTaskbar = false;
-        //    this.Visibility = System.Windows.Visibility.Hidden;
-        //}
         private void Close(object sender, EventArgs e)
         {
             this.ShowInTaskbar = false;
@@ -117,20 +116,18 @@ namespace Task_Progress_Bar
             timer.Stop();
             mySec = a;
             myProBar.Value = 0;
-            
-                double ti = a * 1000 / myProBar.Width;
-                if (ti <= 250)
-                {
-                    ti = 250;
-                    myProBar.Maximum = a * 4;
-                }
-                else
-                {
-                    myProBar.Maximum = myProBar.Width;
-                }
-                //System.Windows.MessageBox.Show(ti.ToString());
-                timer.Interval = ti;
-            
+            double ti = a * 1000 / myProBar.Width;
+            if (ti <= 250)
+            {
+                ti = 250;
+                myProBar.Maximum = a * 4;
+            }
+            else
+            {
+                myProBar.Maximum = myProBar.Width;
+            }
+            //System.Windows.MessageBox.Show(ti.ToString());
+            timer.Interval = ti;
             timer.Start();
             myTime01 = DateTime.Now;
         }
